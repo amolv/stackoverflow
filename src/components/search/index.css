@@ -1,0 +1,7 @@
+.searchWraper {
+  position: relative;
+}
+.searchWraper .helper {
+  position: absolute;
+  background: lightgray;
+}
