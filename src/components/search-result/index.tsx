@@ -3,7 +3,8 @@ export type SearchResultListProps = {
 };
 const SearchResultList = (props: SearchResultListProps) => {
   return (
-    <div>
+    <div className="container">
+      <h2>Search Results</h2>
       {props.data.length}
       <ul>
         <li>1</li>

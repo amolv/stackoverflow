@@ -1,24 +1,24 @@
 import React from "react";
 
-import "./App.css";
+import "./App.scss";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import SearchComp from "./components/search";
-
 import HomeComp from "./pages/home";
+import HeaderComp from "./components/header";
 
 function App() {
-  const getSearchKey = (searchStr: string) => {
-    console.log("getSearchKey", searchStr);
-  };
   return (
     <div className="App">
       <Router>
-        <header className="App-header">
-          <SearchComp getSearchKey={getSearchKey} />
-        </header>
+        <HeaderComp />
 
         <Switch>
+          <Route path="/products">
+            <p>Products page!</p>
+          </Route>
+          <Route path="/teams">
+            <p>Teams page!</p>
+          </Route>
           <Route path="/about">
             <p>About page!</p>
           </Route>

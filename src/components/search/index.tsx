@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-import "./index.css";
+import "./index.scss";
 
 export type SearchCompProps = {
   getSearchKey: Function;
@@ -15,7 +15,7 @@ const SearchComp = (props: SearchCompProps) => {
     SetShowhelp(true);
   };
   const blurHander = () => {
-    SetShowhelp(false);
+    //SetShowhelp(false);
   };
   useEffect(() => {
     let timer = setTimeout(() => {
@@ -32,18 +32,9 @@ const SearchComp = (props: SearchCompProps) => {
 
   return (
     <div className="searchWraper">
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-        </ul>
-      </nav>
       <div>
         <input
+          className="form-control"
           ref={serRef}
           type="text"
           placeholder="Search"
@@ -55,10 +46,43 @@ const SearchComp = (props: SearchCompProps) => {
       </div>
       {showHelp && (
         <div className="helper">
-          <ul>
-            <li>[tag]</li>
-            <li>answers</li>
-          </ul>
+          <div className="row">
+            <div className="col">
+              <ul>
+                <li>
+                  [tag] <span>search within tag</span>
+                </li>
+                <li>
+                  user:123 <span>search by user</span>
+                </li>
+              </ul>
+            </div>
+            <div className="col">
+              <ul>
+                <li>
+                  answers:0 <span>unanswered questions</span>
+                </li>
+                <li>
+                  score:3 <span>posts with 3+ score</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              borderTop: "1px solid",
+              paddingTop: "10px",
+            }}
+          >
+            <Link to="/" className="btn btn-sm btn-secondary">
+              Ask a question
+            </Link>
+            <Link to="/" className="">
+              Search help
+            </Link>
+          </div>
         </div>
       )}
     </div>
