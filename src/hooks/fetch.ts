@@ -37,11 +37,6 @@ const useFetch = (searchString: string | null) => {
     let cancelFetch = false;
     if (!searchString) return;
 
-    if (searchString && cache.current[searchString]) {
-      //const data = cache.current[searchString];
-      //dispatch({ type: "FETCHED", payload: data });
-      return;
-    }
     const fetchQuestions = async () => {
       dispatch({ type: "FETCHING" });
       if (cache.current[searchString]) {
