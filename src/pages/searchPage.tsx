@@ -25,9 +25,18 @@ const SearchPageComp = () => {
                 </Link>
               </div>
             </div>
-            <p className="">Result for {searchString}</p>
+            <p className="">
+              Result for {searchString}
+              {status === "fetching" ? (
+                <span> Loading......</span>
+              ) : error ? (
+                <span className="text-danger"> {error}</span>
+              ) : (
+                ""
+              )}
+            </p>
             <div className="row">
-              <div className="col"> results</div>
+              <div className="col"> Results</div>
               <div className="col text-right">
                 <div className="btn-group" role="group">
                   <button type="button" className="btn btn-outline-dark">
@@ -44,8 +53,6 @@ const SearchPageComp = () => {
             </div>
           </div>
 
-          {error && <p>{error}</p>}
-          {status === "fetching" && <p>Loading......</p>}
           {status === "fetched" && <SearchResultList data={data} />}
         </div>
         <div className="col-2"></div>

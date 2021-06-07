@@ -1,5 +1,3 @@
-import { Link } from "@storybook/router";
-
 type answerType = {
   answer_id: number;
   score: number;
