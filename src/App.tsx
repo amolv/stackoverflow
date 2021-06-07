@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import HomePageComp from "./pages/homePage";
 import HeaderComp from "./components/header";
 import SearchPageComp from "./pages/searchPage";
+import QuestionSinglePageComp from "./pages/questionPage";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
             </Route>
             <Route path="/questions/ask">
               <h2>Ask a public question</h2>
+            </Route>
+            <Route path="/questions/:qId">
+              <QuestionSinglePageComp />
             </Route>
             <Route path="/products">
               <p>Products page!</p>

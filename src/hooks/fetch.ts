@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useRef } from "react";
-import { searchdata } from "../components/search-result/index.stories";
+
 type cacheType = {
   [query: string]: {};
 };
@@ -14,8 +14,6 @@ type Actions =
   | { type: "FETCH_ERROR"; payload: string };
 
 const useFetch = (searchString: string | null) => {
-  console.log("searchString", searchString);
-
   const cache = useRef<any>({});
   const initialState: initialStateType = {
     status: "idle",
@@ -35,12 +33,15 @@ const useFetch = (searchString: string | null) => {
     }
   }, initialState);
 
-  console.log("state", state);
-
   useEffect(() => {
     let cancelFetch = false;
     if (!searchString) return;
 
+    if (searchString && cache.current[searchString]) {
+      //const data = cache.current[searchString];
+      //dispatch({ type: "FETCHED", payload: data });
+      return;
+    }
     const fetchQuestions = async () => {
       dispatch({ type: "FETCHING" });
       if (cache.current[searchString]) {
@@ -48,11 +49,10 @@ const useFetch = (searchString: string | null) => {
         dispatch({ type: "FETCHED", payload: data });
       } else {
         try {
-          // const response = await fetch(
-          //   `https://api.stackexchange.com/2.2/search?order=desc&sort=activity&intitle=${searchString}&site=stackoverflow`
-          // );
-          // const data = await response.json();
-          const data = searchdata;
+          const response = await fetch(
+            `https://api.stackexchange.com/2.2/search?order=desc&sort=activity&intitle=${searchString}&site=stackoverflow`
+          );
+          const data = await response.json();
           cache.current[searchString] = data;
           if (cancelFetch) return;
           dispatch({ type: "FETCHED", payload: data });
@@ -67,7 +67,6 @@ const useFetch = (searchString: string | null) => {
       cancelFetch = true;
     };
   }, [searchString]);
-  console.log("state", state);
 
   return state;
 };

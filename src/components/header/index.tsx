@@ -1,11 +1,9 @@
-import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import SearchComp from "../search";
 
 const HeaderComp = () => {
   const history = useHistory();
   const getSearchKey = (searchStr: string) => {
-    console.log("getSearchKey", searchStr);
     // go to search page
     if (searchStr) history.push("/search?q=" + searchStr);
   };

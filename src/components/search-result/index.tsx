@@ -38,7 +38,7 @@ const SearchResultList = (props: SearchResultListProps) => {
                   <div className="tags">
                     {d.tags.map((t: string) => {
                       return (
-                        <Link to={`/questions/tagged/${t}`} className="post-tag">
+                        <Link key={t} to={`/questions/tagged/${t}`} className="post-tag">
                           {t}{" "}
                         </Link>
                       );

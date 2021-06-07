@@ -9,7 +9,6 @@ export type SearchCompProps = {
 const SearchComp = (props: SearchCompProps) => {
   const [searchKey, setSearchKey] = useState<string>("");
   const [showHelp, SetShowhelp] = useState<boolean>(false);
-  const serRef = useRef<HTMLInputElement | null>(null);
   const getSearchKey = props.getSearchKey;
   const clickHander = () => {
     SetShowhelp(true);
@@ -18,9 +17,10 @@ const SearchComp = (props: SearchCompProps) => {
     SetShowhelp(false);
   };
   useEffect(() => {
-    if (!searchKey) return;
+    if (!searchKey || searchKey.length < 5) return;
+
     let timer = setTimeout(() => {
-      getSearchKey(searchKey);
+      getSearchKey(searchKey.trim());
     }, 300);
     return () => {
       clearTimeout(timer);
@@ -36,7 +36,6 @@ const SearchComp = (props: SearchCompProps) => {
       <div>
         <input
           className="form-control"
-          ref={serRef}
           type="text"
           placeholder="Search"
           onFocus={clickHander}

@@ -7,7 +7,7 @@ const SearchPageComp = () => {
   const query = new URLSearchParams(useLocation().search);
   const searchString = query.get("q");
   const { status, data, error } = useFetch(searchString);
-  console.log("data", data);
+
   return (
     <section>
       <div className="row">
@@ -20,7 +20,7 @@ const SearchPageComp = () => {
               </div>
               <div className="col text-right">
                 <Link to="">Search Tips</Link>{" "}
-                <Link className="btn btn-sm btn-primary" to="">
+                <Link className="btn btn-sm btn-primary" to="/questions/ask">
                   Ask Questions
                 </Link>
               </div>
