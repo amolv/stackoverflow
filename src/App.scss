@@ -2,4 +2,13 @@ $theme-colors: (
   "primary": #0077cc,
 );
 
+$font-size-base: 0.8rem;
+$font-size-lg: $font-size-base * 1.5 !default;
+$font-size-sm: $font-size-base * 0.875 !default;
+
+:root {
+  --green: #48a868;
+  --black: #000;
+}
+
 @import "~bootstrap/scss/bootstrap";

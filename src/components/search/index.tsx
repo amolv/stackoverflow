@@ -8,16 +8,17 @@ export type SearchCompProps = {
 };
 const SearchComp = (props: SearchCompProps) => {
   const [searchKey, setSearchKey] = useState<string>("");
-  const [showHelp, SetShowhelp] = useState<boolean>(true);
+  const [showHelp, SetShowhelp] = useState<boolean>(false);
   const serRef = useRef<HTMLInputElement | null>(null);
   const getSearchKey = props.getSearchKey;
   const clickHander = () => {
     SetShowhelp(true);
   };
   const blurHander = () => {
-    //SetShowhelp(false);
+    SetShowhelp(false);
   };
   useEffect(() => {
+    if (!searchKey) return;
     let timer = setTimeout(() => {
       getSearchKey(searchKey);
     }, 300);
@@ -76,7 +77,7 @@ const SearchComp = (props: SearchCompProps) => {
               paddingTop: "10px",
             }}
           >
-            <Link to="/" className="btn btn-sm btn-secondary">
+            <Link to="/questions/ask" className="btn btn-sm btn-secondary">
               Ask a question
             </Link>
             <Link to="/" className="">

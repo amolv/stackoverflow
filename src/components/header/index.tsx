@@ -1,10 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import SearchComp from "../search";
 
 const HeaderComp = () => {
+  const history = useHistory();
   const getSearchKey = (searchStr: string) => {
     console.log("getSearchKey", searchStr);
+    // go to search page
+    if (searchStr) history.push("/search?q=" + searchStr);
   };
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -35,13 +38,14 @@ const HeaderComp = () => {
         <div style={{ flexBasis: "50%" }}>
           <SearchComp getSearchKey={getSearchKey} />
         </div>
-
-        <button className="btn btn-sm btn-outline-success" type="button">
-          Login
-        </button>
-        <button className="btn btn-sm btn-primary" type="button">
-          Signup
-        </button>
+        <div>
+          <button className="btn btn-sm btn-outline-success" type="button">
+            Login
+          </button>{" "}
+          <button className="btn btn-sm btn-primary" type="button">
+            Signup
+          </button>
+        </div>
       </div>
     </nav>
   );
